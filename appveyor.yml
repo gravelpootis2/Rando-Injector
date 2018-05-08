@@ -1,0 +1,16 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Release
+platform: x86
+environment:
+  nigger:
+    secure: 0c5cm8hXXvTJGdeQqOJQHg==
+build:
+  project: iRektKit/iRektKit.vcxproj
+  verbosity: minimal
+skip_commits:
+  # Regex for matching commit message
+  message: /\(doc\).*/
+
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
